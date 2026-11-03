@@ -1,0 +1,8 @@
+node_modules/
+.sites/
+.local/
+local/
+*.tar.gz
+*.blend1
+*.log
+
