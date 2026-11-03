@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f7f7f2" />
+  <meta name="description" content="A little less tab chaos. Browse your AI threads with a tactile, three-dimensional click-wheel companion." />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./style.css" />
+  <title>threadPod — a little less tab chaos</title>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="threadPod home"><span class="brand-icon"><i></i><b></b></span>thread<span>Pod</span></a>
+    <span class="tagline">A LITTLE LESS TAB CHAOS.</span>
+    <div class="top-actions"><button id="sound" class="icon-button" aria-label="Enable wheel sounds" aria-pressed="false" title="Wheel sounds"></button><button id="help" class="icon-button" aria-label="How to use threadPod" title="How to use"></button><button id="connect" class="connect-button"><span class="connection-dot"></span><span id="connection-label">Connect threads</span><span>↗</span></button></div>
+  </header>
+
+  <main class="workspace">
+    <aside class="library" aria-label="Thread library">
+      <div class="section-label">YOUR LIBRARY <span id="library-count">06</span></div>
+      <nav class="filters" aria-label="Filter threads">
+        <button data-filter="all" class="filter active"><span class="nav-icon" data-icon="layers"></span>All threads<span id="count-all">6</span></button>
+        <button data-filter="active" class="filter"><span class="nav-icon" data-icon="activity"></span>In progress<span id="count-active">3</span></button>
+        <button data-filter="waiting" class="filter"><span class="nav-icon" data-icon="circle"></span>Needs you<span id="count-waiting">1</span></button>
+        <button data-filter="starred" class="filter"><span class="nav-icon" data-icon="star"></span>Favorites<span id="count-starred">0</span></button>
+      </nav>
+      <div class="library-divider"></div>
+      <div class="section-label">IN ROTATION <button id="search-toggle" class="tiny-button" aria-label="Search threads" title="Search threads"></button></div>
+      <label class="search-wrap"><span class="sr-only">Search threads</span><input id="search" type="search" placeholder="Find a thread…" autocomplete="off" /></label>
+      <div id="thread-list" class="thread-list" role="list" aria-label="Threads"></div>
+      <div class="library-bottom"><div class="source-note"><span class="source-dot"></span><span id="source-label">Demo collection</span></div><p id="source-note">Take it for a spin, or bring your own threads.</p><button id="import-side" class="text-button">Add your threads <span>+</span></button></div>
+    </aside>
+
+    <section class="player" aria-label="3D iPod thread browser">
+      <div class="player-heading"><div class="eyebrow"><span></span> YOUR FOCUS, ON SHUFFLE.</div><h1>A thousand threads.<br><em>One little wheel.</em></h1><p>Something familiar. For everything you’re building.</p></div>
+      <div class="device-stage" id="device-stage" tabindex="0" role="application" aria-label="Interactive iPod. Scroll the wheel to browse, Enter to select, Escape for menu. Arrow keys also work.">
+        <div class="stage-grain"></div><div class="orbit-ring"></div><div class="device-shadow"></div>
+        <canvas id="device-canvas" aria-label="Blender-built 3D iPod with live thread display"></canvas>
+        <div id="device-loading" class="device-loading"><span></span>Waking up your little companion…</div>
+        <div class="model-note"><span>01</span><div>THE CLASSIC<br><small>REIMAGINED FOR AGENTS</small></div></div>
+        <div class="drag-note"><span>↔</span><span>DRAG THE BODY<br>TO LOOK AROUND</span></div>
+        <div id="fallback" class="fallback" hidden><h3>Your thread library is ready.</h3><p>3D rendering is unavailable in this browser. Use the library and controls below to browse.</p></div>
+      </div>
+      <div class="device-tools"><div class="finish-picker" aria-label="Device finish"><button class="swatch white selected" data-finish="white" aria-label="Ivory finish" aria-pressed="true"></button><button class="swatch black" data-finish="black" aria-label="Graphite finish" aria-pressed="false"></button><span id="finish-label">Ivory</span></div><button id="reset-view" class="text-button">Reset view <span>⤾</span></button></div>
+      <div class="transport" aria-label="Accessible iPod controls"><button id="menu-control" title="Back to menu (Escape)">MENU</button><button id="prev-control" aria-label="Previous thread">‹</button><button id="select-control" aria-label="Select thread (Enter)"><span></span></button><button id="next-control" aria-label="Next thread">›</button><button id="play-control" aria-label="Start browsing slideshow" aria-pressed="false">▶</button></div>
+      <div class="interaction-hint"><span><b>↻</b> Scroll to explore</span><i></i><span><b>●</b> Click to select</span><i></i><span><kbd>esc</kbd> Go back</span></div>
+    </section>
+
+    <aside class="inspector" aria-label="Selected thread details">
+      <div class="section-label">NOW BROWSING <span class="position"><b id="position">01</b> / <span id="total-position">06</span></span></div>
+      <div class="thread-art" id="thread-art"><div class="art-grid"></div><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div><span class="art-mark">{<i>↗</i>}</span><span class="art-label">A WORK IN PROGRESS</span><span class="art-number" id="art-number">001</span></div>
+      <div class="thread-meta"><span id="agent-badge" class="agent-badge">✳ Codex</span><button id="favorite" class="icon-button" aria-label="Add to favorites" aria-pressed="false"></button></div>
+      <h2 id="thread-title">Design system, meet dark mode.</h2><p class="thread-description" id="thread-description"></p>
+      <div class="detail-rows"><div><span>Status</span><strong id="thread-status"></strong></div><div><span>Workspace</span><strong id="thread-project"></strong></div><div><span>Last updated</span><strong id="thread-updated"></strong></div></div>
+      <button id="open-thread" class="primary-button">Explore thread <span>↗</span></button>
+      <div class="activity-card"><span class="section-label">THE LATEST</span><p id="latest-note"></p><span id="snapshot-note" class="small-mono"></span></div>
+      <div class="inspector-footer"><span class="mini-wheel">◉</span><p>Less switching.<br><strong>More making.</strong></p></div>
+    </aside>
+  </main>
+
+  <footer class="footer"><span><i></i> A SMALL SPACE FOR BIG IDEAS.</span><span id="footer-source">EXAMPLE THREADS · LOCAL-FIRST</span><span>DESIGNED TO SLOW THE SCROLL <b>↗</b></span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="connect-dialog"><button class="close-dialog" aria-label="Close">×</button><span class="eyebrow">YOUR WORLD, IN ROTATION</span><h2>Bring your threads.</h2><p>Connect local Codex threads, or import a collection from any coding agent. Your imported data stays in this browser.</p><button id="local-connect" class="primary-button">Connect local Codex <span>↗</span></button><p class="dialog-note" id="connect-message">Run the included local app with <code>npm start</code> to enable the Codex connection.</p><div class="dialog-separator">OR BRING A COLLECTION</div><label class="drop-zone" for="import-file"><span>↓</span><strong>Choose a JSON file</strong><small>A thread array or an object containing “threads”</small><input id="import-file" type="file" accept=".json,application/json" /></label><div class="dialog-actions"><button id="download-example" class="text-button">Download example JSON ↗</button><button id="use-demo" class="text-button">Try demo threads</button></div><button id="clear-data" class="text-button danger">Clear imported data</button></dialog>
+  <dialog id="help-dialog"><button class="close-dialog" aria-label="Close">×</button><span class="eyebrow">A FAMILIAR FEELING</span><h2>Let your thumb remember.</h2><div class="help-row"><span>↻</span><div><strong>Turn the wheel</strong><p>Drag around the click wheel or scroll over the iPod to move through threads.</p></div></div><div class="help-row"><span>●</span><div><strong>Make a selection</strong><p>Click the center button or press Enter to open a thread on the screen.</p></div></div><div class="help-row"><span>MENU</span><div><strong>Find your way back</strong><p>Click MENU or press Escape. The side buttons skip threads. Play cycles your collection.</p></div></div><div class="help-row"><span>↔</span><div><strong>A little perspective</strong><p>Drag the body to turn the 3D model. Use Reset view to bring it home.</p></div></div><p class="dialog-note">Keyboard: ↑ / ↓ to browse · Enter to select · Esc to go back · Space to play or pause browsing. Play never starts or stops an AI agent.</p><div class="dialog-actions"><a href="./models/threadpod.glb" download>Download 3D model ↗</a><button id="install-app" class="text-button">Use as a Mac app ↗</button></div></dialog>
+  <dialog id="thread-dialog"><button class="close-dialog" aria-label="Close">×</button><span class="eyebrow" id="detail-agent">THREAD</span><h2 id="detail-title"></h2><div id="detail-content"></div></dialog>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
+
