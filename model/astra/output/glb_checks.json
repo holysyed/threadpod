@@ -1,0 +1,17 @@
+{
+  "glb_version": 2,
+  "bytes": 666928,
+  "triangles": 22411,
+  "mesh_primitives": 32,
+  "materials": 9,
+  "images": 1,
+  "invalid_normals": 0,
+  "external_dependencies": 0,
+  "animations": [
+    "Inspection_360"
+  ],
+  "extensions_used": [
+    "KHR_materials_clearcoat"
+  ],
+  "result": "passed"
+}

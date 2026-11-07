@@ -1,0 +1,53 @@
+{
+  "blender_version": "5.2.3 LTS",
+  "source_meshes": 32,
+  "source_vertices": 11863,
+  "source_polygons": 10924,
+  "triangles": 22411,
+  "glb_bytes": 666928,
+  "missing_uvs": [],
+  "geometry_issues": [],
+  "open_surface_meshes": [
+    "Screen_Display",
+    "Label_Menu",
+    "Label_Next-1",
+    "Label_Next1",
+    "Label_NextStop",
+    "Label_Previous-1",
+    "Label_Previous1",
+    "Label_PreviousStop",
+    "Label_Play",
+    "Label_Pause1.2",
+    "Label_Pause2.5",
+    "Back_Engraving",
+    "Back_Specification"
+  ],
+  "open_surface_explanation": "Display and printed/engraved graphic meshes intentionally use single-sided surfaces.",
+  "texture": "512 x 384 PNG, embedded",
+  "dimensions_mm": [
+    62,
+    103,
+    11
+  ],
+  "notes": [
+    "Connector sockets are shallow visual recesses, without hidden internal electronics.",
+    "Inspection animation is opt-in; 8-second linear seamless turntable.",
+    "Browser rendering needs an environment map for metal reflections."
+  ],
+  "round_trip_import": "passed",
+  "interactive_nodes": {
+    "threadPod": true,
+    "ClickWheel": true,
+    "Button_Menu": true,
+    "Button_Next": true,
+    "Button_Previous": true,
+    "Button_PlayPause": true,
+    "Button_Select": true,
+    "Switch_Hold": true,
+    "Screen_Display": true
+  },
+  "imported_animations": [
+    "Inspection_360.001"
+  ],
+  "imported_meshes": 32
+}
